@@ -1,0 +1,121 @@
+Train:
+  command: python train.py
+  load_data_set_parameter:
+    flag:
+      --data_dir
+  save_model_parameter:
+    flag:
+       --save_dir
+  parameters:
+    --num_layers:
+      flag: --num_layers
+      type: int
+      default: 2
+      range:
+        step: 1
+        min: 1
+        max: 5
+    --rnn_size:
+      flag: --rnn_size
+      default: 128
+      range:
+        step: 1
+        min: 1
+        max: 800
+    --model:
+      flag: --model
+      type: string
+      default: lstm
+      choices: lstm,rnn,gru
+    --seq_length:
+      flag: --seq_length
+      default: 50
+      range:
+        step: 1
+        min: 1
+        max: 300
+    --batch_size:
+      flag: --batch_size
+      default: 50
+      range:
+        step: 1
+        min: 1
+        max: 300
+    --num_epochs:
+      flag: --num_epochs
+      default: 50
+      range:
+        step: 1
+        min: 1
+        max: 300
+    --save_every:
+      flag: --save_every
+      default: 1000
+      range:
+        step: 50
+        min: 50
+        max: 3000
+    --training_data_ratio:
+      flag: --training_data_ratio
+      type: float
+      default: 0.8
+      range:
+        step: 0.1
+        min: 0.5
+        max: 1.0
+    --decay_rate:
+      type: float
+      default: 0.97
+    --learning_rate:
+      type: float
+      default: 0.002
+    --write_summary_every:
+      flag: --write_summary_every
+      default: 500
+      range:
+        step: 50
+        min: 50
+        max: 3000
+
+Inference:
+  command: python sample.py
+  load_model_parameter:
+    flag:
+      --save_dir
+  parameters:
+    -n:
+      name: name
+      type: int
+      default: 50
+      range:
+        step: 1
+        min: 1
+        max: 2000
+    --prime:
+      type: string
+      default: " "
+    --temperature:
+      type: float
+      default: 1.0
+      range:
+        step: 0.01
+        min: 0.01
+        max: 1.0
+
+Tuning:
+  default:
+    --save_every: 50
+
+  optimization:
+    --seq_length:
+      min: 10
+      max: 300
+    --batch_size:
+      min: 10
+      max: 300
+    --num_layers:
+      min: 2
+      max: 3
+    --rnn_size:
+      min: 128
+      max: 768
