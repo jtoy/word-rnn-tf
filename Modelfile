@@ -29,11 +29,11 @@ Train:
       choices: lstm,rnn,gru
     --seq_length:
       flag: --seq_length
-      default: 50
+      default: 10
       range:
         step: 1
         min: 1
-        max: 300
+        max: 200
     --batch_size:
       flag: --batch_size
       default: 50
@@ -43,11 +43,11 @@ Train:
         max: 300
     --num_epochs:
       flag: --num_epochs
-      default: 50
+      default: 100
       range:
-        step: 1
+        step: 5
         min: 1
-        max: 300
+        max: 1000
     --save_every:
       flag: --save_every
       default: 1000
@@ -108,11 +108,11 @@ Tuning:
 
   optimization:
     --seq_length:
-      min: 10
-      max: 300
+      min: 5
+      max: 100
     --batch_size:
       min: 10
-      max: 300
+      max: 200
     --num_layers:
       min: 2
       max: 3
