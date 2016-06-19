@@ -70,7 +70,7 @@ class Model():
         prime = prime.split()
         for char in prime[:-1]:
             x = np.zeros((1, 1))
-            x[0, 0] = vocab[char]
+            x[0, 0] = vocab.get(char, 0)
             feed = {self.input_data: x, self.initial_state:state}
             [state] = sess.run([self.final_state], feed)
 
@@ -94,7 +94,7 @@ class Model():
         char = prime[-1]
         for n in range(num):
             x = np.zeros((1, 1))
-            x[0, 0] = vocab[char]
+            x[0, 0] = vocab.get(char, 0)
             feed = {self.input_data: x, self.initial_state:state}
             [logits, state] = sess.run([self.logits, self.final_state], feed)
             sample = weighted_pick(logits[0])
